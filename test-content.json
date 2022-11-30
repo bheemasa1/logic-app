@@ -1,0 +1,115 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "LogicAppLocation": {
+      "type": "string",
+      "minLength": 1,
+      "allowedValues": [
+        "[resourceGroup().location]",
+        "eastasia",
+        "southeastasia",
+        "centralus",
+        "eastus",
+        "eastus2",
+        "westus",
+        "northcentralus",
+        "southcentralus",
+        "northeurope",
+        "westeurope",
+        "japanwest",
+        "japaneast",
+        "brazilsouth",
+        "australiaeast",
+        "australiasoutheast",
+        "southindia",
+        "centralindia",
+        "westindia",
+        "canadacentral",
+        "canadaeast",
+        "uksouth",
+        "ukwest",
+        "westcentralus",
+        "westus2",
+        "koreacentral",
+        "koreasouth",
+        "francecentral",
+        "francesouth",
+        "uaecentral",
+        "uaenorth",
+        "southafricanorth",
+        "southafricawest",
+        "switzerlandnorth",
+        "switzerlandwest",
+        "germanynorth",
+        "germanywestcentral",
+        "norwaywest",
+        "norwayeast",
+        "brazilsoutheast",
+        "westus3",
+        "qatarcentral"
+      ],
+      "defaultValue": "centralus"
+    },
+    "LogicAppName": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "testcontenttype"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "properties": {
+        "state": "Enabled",
+        "definition": {
+          "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+          "actions": {
+            "HTTP": {
+              "type": "Http",
+              "inputs": {
+                "method": "GET",
+                "uri": "https://dev.shop.lumen.com/apis/v1/namespaces/busorg-001/reclaimedge",
+                "headers": {
+                  "Authorization": "Bearer eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJsdW1lbi1yZXNvdXJjZS1hcGkiLCJzdWIiOiJzYXNlLWludGVybmFsIiwiYXBpLnZlcnNpb24iOiJ2MSIsImFwaS5uYW1lc3BhY2UiOiJkZWZhdWx0IiwiaXNzIjoibHVtZW4tcmVzb3VyY2UtYXBpIiwiYXBpLm5hbWUiOiJzYXNlLWludGVybmFsIiwiZXhwIjoyNDM2MjAwMjYzLCJpYXQiOjE2NDcyODE4NjN9.NJCTixrjbh5ncKdZ6vZxCFNgO04mbhqDLzTNm_Hpfh3fkxuf1XZWYl55Lr_wCxkMt9y3G5OMiX4s0j9byaqCMluNo3v2abESAssiNjbVBGFZk5IZ0K1d7L4A7hW9Xh2em6lEpAXLPmnuoCjhoh5z_hAP_w0MXgEIiUQwPVBEtYi713rjnr9DxyfdiLVd-hL6ohPE9o09MHj7hBf8EhXqROFjAcQg8xMiZdyHZbKJXQoOy34Lxno8TB73Jt1H3Gmcj51G6b4csxlhSbHK5hri7wvEtWGnnd2TGMX3dfb9rLmAFFz5hAaIUDz47O_1Cr094n3ux1eNNXFgUjTezKwvdA",
+                  "Content-Type": "application/json"
+                },
+                "body": {}
+              },
+              "runAfter": {}
+            }
+          },
+          "parameters": {},
+          "triggers": {
+            "manual": {
+              "type": "Request",
+              "kind": "Http",
+              "inputs": {
+                "schema": {}
+              }
+            }
+          },
+          "contentVersion": "1.0.0.0",
+          "outputs": {}
+        },
+        "parameters": {}
+      },
+      "name": "[parameters('LogicAppName')]",
+      "type": "Microsoft.Logic/workflows",
+      "location": "[parameters('LogicAppLocation')]",
+      "tags": {
+        "Environment": "dev",
+        "costAllocation": "sptcentral",
+        "costAppOwnerManager": "John.Nava@lumen.com",
+        "costAppOwnerTech": "John.Nava@lumen.com",
+        "costBudgetOwner": "Gary.Sidhu@lumen.com",
+        "costDivision": "SP&T SERVICE FULFILLMENT & INVENTORY",
+        "costRegion": "NorthAmerica",
+        "costVP": "Gary.Sidhu@lumen.com",
+        "displayName": "LogicApp"
+      },
+      "apiVersion": "2016-06-01"
+    }
+  ],
+  "outputs": {}
+}
